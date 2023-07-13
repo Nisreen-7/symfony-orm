@@ -45,4 +45,17 @@ class StudentRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+
+
+ 
+//    public function paginationQuery($value)
+//    {
+//        return $this->createQueryBuilder('s')
+        
+//            ->orderBy('s.id', 'ASC')
+//            ->getQuery()
+     
+//        ;
+//    }
 }
