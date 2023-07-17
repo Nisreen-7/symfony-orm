@@ -56,3 +56,32 @@ Bonus: Utiliser le findBy pour rajouter de la pagination
 2. Faire les migrations
 	
 3. Créer un NoteController avec juste un findAll et un persist
+
+_________________________________________
+## Créer le POST pour la note comme on le ferait habituellement : 
+
+1. Une manière de gérer la relation peut être de rajouter un /{id} à la route POST et un paramètre Student dans la fonction, qu'on assignera à la note avant de faire le persist
+	
+2. Faire également en sorte d'assigner la date de maintenant au createdAt de la note avant de la faire persister
+
+### commandes à exécuter pour repartir d'un truc propre si jamais vous vous êtes plantés sur les migrations (par exemple quand on fait un do:mi:mi et qu'il nous dit "table already exists") : 
+
+Supprimer tous les fichiers de migrations dans le dossier migrations (les trucs qui commencent par Version...) puis exécuter dans cet ordre
+
+php bin/console do:da:dr --force
+
+php bin/console do:da:cr
+
+php bin/console ma:mi
+
+php bin/console do:mi:mi
+____________________________________________
+### Un peu de API Platform
+
+1. Faire un composer req api cors
+	
+2. Rajouter un #[ApiResource] sur nos 2 entités et supprimer nos 2 contrôleurs pour qu'il n'y ait pas de conflits avec ceux d'api-platform. On peut aussi retirer le #[Ignore] sur le OneToMany du Student
+	
+3. Aller sur http://localhost:8000/api pour voir la liste des routes générées, et tenter de faire un GET all et un POST pour voir si ça marche toujours, pour le student et ensuite pour la note
+	
+4. Créer une nouvelle entité Promo qui aura un name, un cursus, un startDate et un endDate (les deux en date), et une relation ManyToMany avec Student (faire en sorte que ça soit une ApiResource si c'est pas fait par défaut)

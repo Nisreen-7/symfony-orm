@@ -1,0 +1,28 @@
+{
+    "_id": "cd557fc7-6d70-4db5-94e9-65f24ec34c3c",
+    "colName": "student",
+    "created": "2023-07-17T09:09:14.082Z",
+    "sortNum": 20000,
+    "folders": [],
+    "requests": [
+        {
+            "_id": "c3ff95df-ff69-4a7f-aa9b-1ca1ad1839b2",
+            "colId": "cd557fc7-6d70-4db5-94e9-65f24ec34c3c",
+            "containerId": "",
+            "name": "post",
+            "url": "localhost:8000/api/student",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2023-07-17T09:09:24.436Z",
+            "modified": "2023-07-17T09:13:50.821Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\":\"nisreen\",\n  \"birthdate\":\"15-05-2000\",\n  \"address\":\"42 avenue de la plaine flurie\"\n}",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}
