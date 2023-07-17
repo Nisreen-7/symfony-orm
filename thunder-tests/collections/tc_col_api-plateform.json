@@ -1,0 +1,23 @@
+{
+    "_id": "05a427f0-b26d-48d2-90b4-fccc5d6d06c3",
+    "colName": "api plateform",
+    "created": "2023-07-17T09:43:45.480Z",
+    "sortNum": 30000,
+    "folders": [],
+    "requests": [
+        {
+            "_id": "a785a0b3-9a7e-4b66-846a-2d0fbbd7f32d",
+            "colId": "05a427f0-b26d-48d2-90b4-fccc5d6d06c3",
+            "containerId": "",
+            "name": "api",
+            "url": "localhost:8000/api",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-07-17T09:43:55.971Z",
+            "modified": "2023-07-17T09:44:10.643Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}

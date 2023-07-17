@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\StudentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -10,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Ignore;
 
 #[ORM\Entity(repositoryClass: StudentRepository::class)]
+#[ApiResource]
 class Student
 {
     #[ORM\Id]
@@ -26,13 +28,17 @@ class Student
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $address = null;
     
-    #[Ignore] //Pour stopper la dépendance circulaire avec Note, je choisis de ne pas récupérer les notes quand je récupère les students
+    // #[Ignore] //Pour stopper la dépendance circulaire avec Note, je choisis de ne pas récupérer les notes quand je récupère les students
     #[ORM\OneToMany(mappedBy: 'student', targetEntity: Note::class, orphanRemoval: true)]
     private Collection $notes;
+
+    #[ORM\ManyToMany(targetEntity: Promo::class, mappedBy: 'students')]
+    private Collection $promos;
 
     public function __construct()
     {
         $this->notes = new ArrayCollection();
+        $this->promos = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -101,6 +107,33 @@ class Student
             if ($note->getStudent() === $this) {
                 $note->setStudent(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Promo>
+     */
+    public function getPromos(): Collection
+    {
+        return $this->promos;
+    }
+
+    public function addPromo(Promo $promo): static
+    {
+        if (!$this->promos->contains($promo)) {
+            $this->promos->add($promo);
+            $promo->addStudent($this);
+        }
+
+        return $this;
+    }
+
+    public function removePromo(Promo $promo): static
+    {
+        if ($this->promos->removeElement($promo)) {
+            $promo->removeStudent($this);
         }
 
         return $this;
